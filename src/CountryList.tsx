@@ -109,7 +109,7 @@ function CountriesList() {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       {filteredCountries?.map(({ name, emoji, capital, languages }) => (
-        <CountryCard key={name}>
+        <CountryCard key={name} className="country-card">
           <CountryEmoji>{emoji}</CountryEmoji>
           <CountryName>{name}</CountryName>
           <CountryCapital>Capital: {capital}</CountryCapital>
