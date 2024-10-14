@@ -6,7 +6,9 @@ export default function App() {
   return (
     <div>
       <h2>🌎 Countries List by Angelo Maia 🌎</h2>
-      <CountriesList />
+      <div>
+        <CountriesList />
+      </div>
     </div>
   );
 }

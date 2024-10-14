@@ -1,5 +1,6 @@
 import { useQuery, gql } from '@apollo/client';
 import styled from 'styled-components';
+import { useState } from 'react';
 
 const GET_COUNTRIES = gql`
 query {
@@ -76,15 +77,38 @@ const LanguageTag = styled.span`
   display: inline-block;
   color: #ffffff;
 `;
+
+const SearchInput = styled.input`
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: 1.2rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+`;
+
 function CountriesList() {
   const { loading, error, data } = useQuery<CountriesData>(GET_COUNTRIES);
+  const [searchTerm, setSearchTerm] = useState('');
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error : {error.message}</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  const filteredCountries = data?.countries.filter((country) => {
+    const countryName = country.name.toLowerCase();
+    const countryCapital = country.capital ? country.capital.toLowerCase() : '';
+    return countryName.includes(searchTerm.toLowerCase()) || countryCapital.includes(searchTerm.toLowerCase());
+  });
 
   return (
     <>
-      {data?.countries.map(({ name, emoji, capital, languages }) => (
+      <SearchInput
+        type="text"
+        placeholder="Search by country name or capital..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      {filteredCountries?.map(({ name, emoji, capital, languages }) => (
         <CountryCard key={name}>
           <CountryEmoji>{emoji}</CountryEmoji>
           <CountryName>{name}</CountryName>
