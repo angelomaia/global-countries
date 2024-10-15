@@ -1,7 +1,7 @@
 import { useQuery, gql } from '@apollo/client';
 import { useState, useEffect } from 'react';
-import * as Styled from '../assets/CountriesList.style';
 import CountriesFilter from './CountryFilter';
+import CountryCard from './CountryCard';
 
 const GET_COUNTRIES = gql`
   query {
@@ -50,19 +50,13 @@ function CountriesList() {
       />
 
       {filteredCountries.map(({ name, emoji, capital, languages }) => (
-        <Styled.CountryCard key={name} className="country-card">
-          <Styled.CountryEmoji>{emoji}</Styled.CountryEmoji>
-          <Styled.CountryName>{name}</Styled.CountryName>
-          <Styled.CountryCapital>Capital: {capital}</Styled.CountryCapital>
-          <Styled.CountryLanguages>
-            Languages:{' '}
-            {languages.map((lang) => (
-              <Styled.LanguageTag key={lang.name} className="language">
-                {lang.name}
-              </Styled.LanguageTag>
-            ))}
-          </Styled.CountryLanguages>
-        </Styled.CountryCard>
+        <CountryCard
+          key={name}
+          name={name}
+          emoji={emoji}
+          capital={capital}
+          languages={languages}
+        />
       ))}
     </>
   );
