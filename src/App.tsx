@@ -1,6 +1,6 @@
 
 import './App.css'
-import CountriesList from './CountryList'
+import CountriesList from './components/CountryList'
 
 export default function App() {
   return (

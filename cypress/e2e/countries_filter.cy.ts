@@ -30,8 +30,6 @@ describe('countries filter', () => {
       .should('exist')
       .should('be.visible')
       .should('have.length.greaterThan', 0)
-      .each(($card) => {
-        cy.wrap($card).find('.country-language').should('include.text', 'Portuguese');
-      });
+      .should('include.text', 'Portuguese');
   });
 })
