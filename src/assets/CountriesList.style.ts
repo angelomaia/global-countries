@@ -50,6 +50,15 @@ export const LanguageTag = styled.span`
   color: #ffffff;
 `;
 
+export const LanguageDropdown = styled.select`
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+`;
+
 export const SearchInput = styled.input`
   padding: 10px;
   margin-bottom: 20px;
